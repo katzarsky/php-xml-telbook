@@ -14,7 +14,7 @@ else if($request->get('persons/[0-9]+')) {
 }
 else if($request->post('persons/[0-9]+') || $request->post('persons')) {
 	$person_id = (int) $request->segment(1, 0);
-	$person = $request->data;
+	$person = $request->data->person;
 	
 	if(strlen($person->fname) < 1) $response->error('First Name is empty.');
 	if(strlen($person->lname) < 1) $response->error('Last Name is empty.');

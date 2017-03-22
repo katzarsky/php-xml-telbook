@@ -1,6 +1,6 @@
 <?php
 
-class XmlRequest extends JsonRequest{
+class XmlRequest {
 	
 	public $method = '';
 	public $path = '';
@@ -10,7 +10,7 @@ class XmlRequest extends JsonRequest{
 		// get the HTTP method, path and body of the request
 		$this->method = $_SERVER['REQUEST_METHOD'];
 		$this->path = trim($_SERVER['PATH_INFO'],'/');
-//		$this->data = xml_decode(file_get_contents('php://input'));
+		$this->data = simplexml_load_string(file_get_contents('php://input'));
 	}
 	
 	private function match($route, $method=null) {

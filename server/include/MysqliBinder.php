@@ -62,7 +62,6 @@ class MysqliBinder extends Mysqli {
 	
 	public function escape($arg) {
 		if(is_null($arg)) return 'NULL';
-		if(is_string($arg)) return "'".$this->real_escape_string($arg)."'";
 		if(is_numeric($arg)) return $arg+0;
 		if(is_array($arg)) {
 			$escaped = [];
@@ -71,6 +70,6 @@ class MysqliBinder extends Mysqli {
 			}
 			return implode(', ', $escaped);
 		}
-		return '[UNKNOWN TYPE]';
+		return "'".$this->real_escape_string($arg.'')."'";
 	}
 }

@@ -4,7 +4,7 @@
 	<xsl:output method="html" />
 	
 	<xsl:template match="/">
-		<xsl:apply-templates select='data/messages/item' />
+		<xsl:apply-templates select='//messages/item' />
 	</xsl:template>
 			
 	<xsl:template match="messages/item">

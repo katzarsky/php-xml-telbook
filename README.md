@@ -1,6 +1,6 @@
 # php-xml-telbook
 
-A simple `telbook` web-application, using REST PHP backend and XML transport.
+A simple `telephone book` web-application, using REST PHP backend and XML transport.
 
 ## Utilizes:
 

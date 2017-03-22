@@ -3,12 +3,8 @@
 error_reporting(E_ALL | E_STRICT & ~E_DEPRECATED);
 
 // Include all needed classes
-include 'include/JsonRequest.php';
-include 'include/JsonResponse.php';
-
 include 'include/XmlRequest.php';
 include 'include/XmlResponse.php';
-
 include 'include/MysqliBinder.php';
 
 // Create response. if something is wrong - at least we can tell the client.

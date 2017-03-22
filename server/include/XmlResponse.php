@@ -1,6 +1,31 @@
 <?php
 
-class XmlResponse extends JsonResponse{	
+class XmlResponse {	
+	public $code = null; // 200 by default for HTTP protocol
+	public $messages = [];
+	
+	public function error($text) {		
+		$this->messages[] = (object) ['type' => 'error', 'text' => $text];
+	}
+
+	public function info($text) {
+		$this->messages[] = (object) ['type' => 'info', 'text' => $text];
+	}
+	
+	public function code($http_code) {
+		$this->code = $http_code;
+	}
+	
+	public function hasErrors() {
+		$errors = 0;
+		foreach($this->messages as $m) {
+			if($m->type == 'error') {
+				$errors++;
+			}
+		}
+		return ($errors > 0);
+	}
+	
 	public function render() {
 		header("Content-Type: text/xml; charset=utf-8");
 		if($this->code === null) {
@@ -10,9 +35,16 @@ class XmlResponse extends JsonResponse{
 			http_response_code($this->code);
 		}
 		
-		return 
+		$xml =
 			'<?xml version="1.0" encoding="UTF-8"?>'."\n".
 			$this->xml_encode('data', $this);
+
+		// nice formatting
+		$domxml = new DOMDocument('1.0');
+		$domxml->preserveWhiteSpace = false;
+		$domxml->formatOutput = true;
+		$domxml->loadXML($xml);
+		return $domxml->saveXML();
 	}
 	
 	private function xml_encode($name, $var) {

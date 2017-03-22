@@ -4,7 +4,7 @@
 	<xsl:output method="html" />
 
 	<xsl:template match="/">
-		<xsl:apply-templates select="data/person" />
+		<xsl:apply-templates select="//person" />
 		<table class="grid">
 			<tr>
 				<th>ID</th>
@@ -12,7 +12,7 @@
 				<th>Type</th>
 				<th></th>
 			</tr>
-			<xsl:apply-templates select="data/telephones/item" />
+			<xsl:apply-templates select="//telephones/item" />
 		</table>
 	</xsl:template>
 			
