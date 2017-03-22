@@ -47,7 +47,15 @@ else if($request->get('persons/[0-9]+/telephones')) {
 	$response->person = $db->querybind_one('SELECT * FROM persons WHERE id = ?', [$person_id] );
 	$response->telephones = [];
 	if($response->person) {
-		$response->telephones = $db->querybind_all('SELECT * FROM telephones WHERE person_id = ?', [$person_id] );
+		$response->telephones = $db->querybind_all('
+				SELECT 
+					t.*, 
+					tt.name as teltype
+				FROM 
+					telephones t
+					JOIN teltypes tt ON(t.teltype_id=tt.id)
+				WHERE person_id = ?
+			', [$person_id] );
 	}
 	else {
 		$response->code(404);
@@ -56,7 +64,16 @@ else if($request->get('persons/[0-9]+/telephones')) {
 }
 else if($request->get('telephones/[0-9]+')) {
 	$telephone_id = (int) $request->segment(1);
-	$response->telephone = $db->querybind_one('SELECT * FROM telephones WHERE id = ?', [ $telephone_id ]);
+	$response->telephone = $db->querybind_one('
+			SELECT 
+				t.*, 
+				tt.name as teltype
+			FROM 
+				telephones t
+				JOIN teltypes tt ON(t.teltype_id=tt.id)
+			WHERE person_id = ?
+		', [ $telephone_id ]);
+	
 	if(!$response->telephone) {
 		$response->code(404);
 		$response->error('404: Telephone Not Found.');

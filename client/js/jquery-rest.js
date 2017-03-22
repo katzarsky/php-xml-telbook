@@ -1,4 +1,4 @@
-// Shorthand for SELETE AJAX requests.
+// Shorthand for DELETE AJAX requests.
 $.delete = function (url) {
 	return $.ajax({
 		url: url,
@@ -6,14 +6,14 @@ $.delete = function (url) {
 	});
 };
 
-// Shorthand for POST AJAX requests with JSON.
-// Same as $.post but with object-to-JSON conversion.
+// Shorthand for POST AJAX requests with XML.
+// Same as $.post but with object-to-XML conversion.
 $.postJSON = function (url, data) {
 	return $.ajax({
 		url: url,
 		type : 'POST',
 		data : JSON.stringify(data),
-		contentType : 'application/json'
+		contentType : 'application/xml'
 	});
 };
 

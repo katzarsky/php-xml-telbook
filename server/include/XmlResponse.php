@@ -2,7 +2,7 @@
 
 class XmlResponse extends JsonResponse{	
 	public function render() {
-		header("Content-Type: application/xml; charset=utf-8");
+		header("Content-Type: text/xml; charset=utf-8");
 		if($this->code === null) {
 			$this->code = 200;
 		}
@@ -24,7 +24,7 @@ class XmlResponse extends JsonResponse{
 		}
 		else if(is_array($var)) {
 			foreach($var as $v){
-				$xml .= "\n".$this->xml_encode($name.'-item', $v);
+				$xml .= "\n".$this->xml_encode('item', $v);
 			}
 		}
 		else {
