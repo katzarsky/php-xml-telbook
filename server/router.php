@@ -77,7 +77,7 @@ else if($request->get('telephones/[0-9]+')) {
 			FROM 
 				telephones t
 				JOIN teltypes tt ON(t.teltype_id=tt.id)
-			WHERE person_id = ?
+			WHERE t.id = ?
 		', [ $telephone_id ]);
 	
 	if(!$response->telephone) {

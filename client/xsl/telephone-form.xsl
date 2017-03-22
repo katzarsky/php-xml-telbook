@@ -35,11 +35,15 @@
 			</p>
 			<p>
 				<label>Type</label>
+				<xsl:variable name='teltype_id' select='teltype_id'/>
 				<select name='teltype_id'>
 					<option value=''> </option>
 					<xsl:for-each select='//teltypes/item'>
 						<option>
 							<xsl:attribute name='value'><xsl:value-of select='id' /></xsl:attribute>
+							<xsl:if test="id = $teltype_id">
+								<xsl:attribute name='selected'>selected</xsl:attribute>
+							</xsl:if>
 							<xsl:value-of select='name'/>
 						</option>
 					</xsl:for-each>
