@@ -11,7 +11,7 @@
 				<th>Address</th>
 				<th></th>
 			</tr>
-			<xsl:apply-templates select="data/persons/item" />
+			<xsl:apply-templates select="//persons/item" />
 		</table>
 	</xsl:template>
 	
