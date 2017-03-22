@@ -46,12 +46,6 @@
 				</select>
 			</p>
 			<p>
-				<label>Address</label>
-				<input name='address'>
-					<xsl:attribute name='value'><xsl:value-of select='address' /></xsl:attribute>
-				</input>
-			</p>
-			<p>
 				<button>Save</button>
 			</p>
 		</form>

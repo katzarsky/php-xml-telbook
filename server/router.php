@@ -14,7 +14,7 @@ else if($request->get('persons/[0-9]+')) {
 }
 else if($request->post('persons/[0-9]+') || $request->post('persons')) {
 	$person_id = (int) $request->segment(1, 0);
-	$person = $request->data->person;
+	$person = $request->data->person; // deserialized XML object sent over the network.
 	
 	if(strlen($person->fname) < 1) $response->error('First Name is empty.');
 	if(strlen($person->lname) < 1) $response->error('Last Name is empty.');
@@ -26,9 +26,15 @@ else if($request->post('persons/[0-9]+') || $request->post('persons')) {
 	}
 	else {
 		if($person_id > 0) { // update existing
-			$result = $db->querybind('UPDATE persons SET fname=?, lname=?, address=? WHERE id=?', [$person->fname, $person->lname, $person->address, $person_id]);
+			$result = $db->querybind(
+				'UPDATE persons SET fname=?, lname=?, address=? WHERE id=?', 
+				[$person->fname, $person->lname, $person->address, $person_id]
+			);
 		} else { // insert new
-			$result = $db->querybind('INSERT INTO persons SET fname=?, lname=?, address=?', [$person->fname, $person->lname, $person->address]);
+			$result = $db->querybind(
+				'INSERT INTO persons SET fname=?, lname=?, address=?', 
+				[$person->fname, $person->lname, $person->address]
+			);
 			$person_id = $db->insert_id;
 		}
 		
@@ -81,7 +87,7 @@ else if($request->get('telephones/[0-9]+')) {
 }
 else if($request->post('telephones/[0-9]+') || $request->post('telephones')) {
 	$telephone_id = (int) $request->segment(1);
-	$telephone = $request->data; // deserialized JSON object sent over the network.
+	$telephone = $request->data->telephone; // deserialized XML object sent over the network.
 	if($telephone) {
 		if(strlen($telephone->number) < 1) $response->error('Number is empty.');
 		if($telephone->person_id < 1) $response->error('Missing person_id.');
@@ -97,7 +103,6 @@ else if($request->post('telephones/[0-9]+') || $request->post('telephones')) {
 	}
 	else {
 		$args = [$telephone->person_id, $telephone->teltype_id, $telephone->number, $telephone_id];
-		
 		if($telephone_id > 0) { // update existing
 			$result = $db->querybind('UPDATE telephones SET person_id=?, teltype_id=?, number=? WHERE id=?', $args);
 		} else { // insert new

@@ -8,11 +8,13 @@ $.delete = function (url) {
 
 // Shorthand for POST AJAX requests with XML.
 // Same as $.post but with object-to-XML conversion.
-$.postXML = function (url, data) {
+$.postXML = function (url, dom) {
+	var serializer = new XMLSerializer();
+	var xml_string = serializer.serializeToString(dom.documentElement);
 	return $.ajax({
 		url: url,
 		type : 'POST',
-		data : data,
+		data : xml_string,
 		contentType : 'text/xml'
 	});
 };

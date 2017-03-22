@@ -14,6 +14,16 @@
 			</tr>
 			<xsl:apply-templates select="//telephones/item" />
 		</table>
+		<p>
+			<a href='#' class='add_icon telephone-add'>
+				<xsl:attribute name="data-person-id"><xsl:value-of select="//person/id" /></xsl:attribute>
+				Add new telephone
+			</a>
+			<a href='#' class='refresh_icon telephones-refresh'>
+				<xsl:attribute name="data-person-id"><xsl:value-of select="//person/id" /></xsl:attribute>
+				Refresh Telephones
+			</a>
+		</p>	
 	</xsl:template>
 			
 	<xsl:template match="telephones/item">
@@ -24,12 +34,12 @@
 			<td>
 				<a href='#' class='edit_icon telephone-edit'>
 					<xsl:attribute name="data-telephone-id"><xsl:value-of select="id" /></xsl:attribute>
-					<xsl:attribute name="data-person-id"><xsl:value-of select="/data/person/id" /></xsl:attribute>
+					<xsl:attribute name="data-person-id"><xsl:value-of select="//person/id" /></xsl:attribute>
 					Edit
 				</a>
 				<a href='#' class='delete_icon telephone-delete'>
 					<xsl:attribute name="data-telephone-id"><xsl:value-of select="id" /></xsl:attribute>
-					<xsl:attribute name="data-person-id"><xsl:value-of select="/data/person/id" /></xsl:attribute>
+					<xsl:attribute name="data-person-id"><xsl:value-of select="//person/id" /></xsl:attribute>
 					Delete
 				</a>
 			</td>
