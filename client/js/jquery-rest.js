@@ -13,7 +13,7 @@ $.postJSON = function (url, data) {
 		url: url,
 		type : 'POST',
 		data : JSON.stringify(data),
-		contentType : 'application/xml'
+		contentType : 'text/xml'
 	});
 };
 
