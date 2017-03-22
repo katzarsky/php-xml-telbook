@@ -1,13 +1,13 @@
-# php-rest-telbook
+# php-xml-telbook
 
-A simple `telbook` web-application, using REST-full PHP backend.
+A simple `telbook` web-application, using REST PHP backend and XML transport.
 
 ## Utilizes:
 
 	.htaccess (to implement URL rewriting for the server backend)
 
 	HTML/CSS (browser visualization)
-	AJAX/JSON (transport of data between server and browser)
+	AJAX/XML (transport of data between server and browser)
 	JQuery.js Library: https://api.jquery.com/
 
 	PHP: http://php.net/manual/en/
@@ -24,10 +24,39 @@ A simple `telbook` web-application, using REST-full PHP backend.
 	* [GET, POST, DELETE] telephones/{ID}
 	* [GET] teltypes
 
-## JSON entities:
+## XML entities:
 
-	* person: ` {id:1, fname:"Ivan", lname:"Ivanov", address:"Dragan Tsankov 47"} `
-	* teltype: ` {id:2, name:"Mobile"} `
-	* telephone: ` {id:5, person_id:1, teltype_id:2, number:"0883199482"} `
-	* message: ` {type:"error", text:"An Error Ocurred!"} `
-	* server-response: ` {code:200, messages:[], person/persons/telephones...} `
+	*person*:
+		<person>
+			<id>1</id>
+			<fname>Ivan</fname>
+			<lname>Ivanov</lname>
+			<address>Dragan Tsankov 47</address>
+		</person>
+
+	*teltype*: 
+		<teltype>
+			<id>2</id>
+			<name>Mobile</name>
+		</teltype>
+
+	*telephone*:
+		<telephone>
+			<id>1</id>
+			<person_id>1</person_id>
+			<teltype_id>2</teltype_id>
+			<number>0883199482</number>
+		</telephone>
+
+	*message*: 
+		<message>
+			<type>error</type>
+			<text>An error has ocurred!</text>
+		</message>
+
+	*server-response*: 
+		<response>
+			<code></code>
+			<messages>...</messages>
+			... (<persons>, <telephones>, ...)
+		</response>
