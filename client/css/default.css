@@ -31,10 +31,6 @@ h1 small, h2 small, h3 small{
 	opacity: .4;
 	font-size:.8em;
 }
-ul {
-	margin: .5em 0;
-	padding-left:2em;
-}
 a:link, a:visited, a:active, a.link:link, a.link:visited, a.link:active { 
 	color: #06a; 
 }
@@ -48,7 +44,7 @@ th, td {
 a:link, a:visited, a:active { text-decoration:none; }
 a:hover { text-decoration:underline; }
 p {	margin: 0.5em 0 0.5em 0; }
-.b, label { font-weight: bold; }
+label { font-weight: bold; }
 
 table.grid,  
 table.grid th, 
@@ -104,8 +100,7 @@ label {
 
 input, 
 input[type="text"], 
-select,
-textarea {
+select {
     background: #fff;
     border-width: 1px;
     padding: 2px;
@@ -139,4 +134,3 @@ button:hover {
 button:active {
 	background: #258;
 }
-
