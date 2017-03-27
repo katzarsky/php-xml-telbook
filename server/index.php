@@ -29,7 +29,7 @@ register_shutdown_function(function() use ($response) {
 
 // Create request, and db-connection
 $request = new XmlRequest();
-$db = new MysqliBinder('127.0.0.1:3306', 'root', 'plovdiv81', 'telbook');
+$db = new MysqliBinder('127.0.0.1:3306', 'root', '', 'telbook');
 if($db->connect_errno) {
 	$response->code(500);
 	$response->error('Cannot connect to database.');
